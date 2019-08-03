@@ -11,7 +11,7 @@ namespace Models
         public string Country { get; set; }
         public string Gender { get; set; }
 
-        public virtual ICollection<Music> Musics { get; set; }
+        public virtual IList<MusicArtist> MusicArtists { get; set; }
         public virtual ICollection<Album> Albums { get; set; }
 
     }

@@ -10,10 +10,12 @@ namespace Models
         public string Title { get; set; }
         public string Duration { get; set; }
         public DateTimeOffset DatePublic { get; set; }
+
+        public Guid AlbumId { get; set; }
         public Album Album { get; set; }
 
-        public ICollection<Artist> Artists { get; set; } 
-        public ICollection<PlayList> PlayLists { get; set; }
+        public IList<MusicArtist> MusicArtists { get; set; } 
+        public IList<PlayListMusic> PlayListMusics { get; set; }
        
     }
 }

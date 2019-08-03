@@ -12,6 +12,6 @@ namespace Models
         public Guid UserId { get; set; }
         public User User { get; set; }
 
-        public ICollection<Music> Music { get; set; }
+        public IList<PlayListMusic>  PlayListMusics { get; set; }
     }
 }
