@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace DTO
 {
-    public class UserPersonDTO
+    public class UserPersonSigninDTO
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
@@ -12,7 +13,7 @@ namespace DTO
         public string Country { get; set; }
         public string Gender { get; set; }
 
-        public Guid UserId { get; set; }
-        public string Email { get; set; }
+        public User User { get; set; }
+    
     }
 }

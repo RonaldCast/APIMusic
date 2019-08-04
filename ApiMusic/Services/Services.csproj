@@ -7,7 +7,6 @@
   <ItemGroup>
     <ProjectReference Include="..\DTO\DTO.csproj" />
     <ProjectReference Include="..\Persistent\Persistent.csproj" />
-    <ProjectReference Include="..\Validation\Validation.csproj" />
   </ItemGroup>
 
 </Project>

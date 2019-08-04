@@ -14,6 +14,7 @@ using Microsoft.Extensions.Options;
 using NSwag;
 using NSwag.Generation.Processors.Security;
 using Persistent;
+using Services.PersonService;
 
 namespace ApiMusic
 {
@@ -29,12 +30,16 @@ namespace ApiMusic
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Configuration Service 
+            services.AddScoped<IPersonService, PersonService>();
+            
 
+            //Configuration database 
             var connectionString = Configuration.GetConnectionString("dev");
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            //configuracion de swagger
+            //Configuration swagger
             services.AddOpenApiDocument(document =>
             {
 
@@ -71,7 +76,8 @@ namespace ApiMusic
             }
 
             app.UseHttpsRedirection();
-            //anadiendo swagger
+
+            //Add swagger
             app.UseOpenApi();
             app.UseSwaggerUi3();
 

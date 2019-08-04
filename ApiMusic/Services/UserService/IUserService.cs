@@ -8,7 +8,6 @@ namespace Services.UserService
 {
     public interface IUserService
     {
-        Task<Guid> InsertUser(UserDTO user);
         Task<UserDTO> GetUser(Guid id);
     }
 }

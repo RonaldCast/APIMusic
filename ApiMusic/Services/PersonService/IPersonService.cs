@@ -8,8 +8,8 @@ namespace Services.PersonService
 {
     public interface IPersonService
     {
-        Task<UserPersonDTO> InsertPerson(UserPersonDTO person);
-        Task<UserPersonDTO> GetPerson(Guid id);
-        Task<PersonDTO> UpdatePerson(PersonDTO id);
+        Task<UserPersonDTO> InsertPersonAsync(UserPersonSigninDTO userPerson);
+        Task<UserPersonDTO> GetPersonAsync(Guid id);
+        Task<PersonDTO> UpdatePersonAsync(PersonDTO id);
     }
 }
