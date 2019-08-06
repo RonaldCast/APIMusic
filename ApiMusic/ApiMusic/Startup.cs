@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using DTO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -23,6 +25,7 @@ namespace ApiMusic
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            
         }
 
         public IConfiguration Configuration { get; }
@@ -30,6 +33,9 @@ namespace ApiMusic
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //configuration AutoMapper
+   
+
             //Configuration Service 
             services.AddScoped<IPersonService, PersonService>();
             
@@ -38,7 +44,7 @@ namespace ApiMusic
             var connectionString = Configuration.GetConnectionString("dev");
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
+            services.AddAutoMapper();
             //Configuration swagger
             services.AddOpenApiDocument(document =>
             {
