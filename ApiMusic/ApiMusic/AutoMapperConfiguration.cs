@@ -14,6 +14,9 @@ namespace DTO
                 .ReverseMap();
             CreateMap<User, UserPersonSigninDTO>()
                 .ReverseMap();
+
+            CreateMap<Person, PersonDTO>()
+                .ReverseMap();
         }
     }
 }

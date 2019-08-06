@@ -11,6 +11,6 @@ namespace Services.PersonService
     {
         Task<UserPersonDTO> InsertPersonAsync(Person userPerson);
         Task<UserPersonDTO> GetPersonAsync(Guid id);
-        Task<PersonDTO> UpdatePersonAsync(Person id);
+        Task<PersonDTO> UpdatePersonAsync(Guid id, Person person);
     }
 }

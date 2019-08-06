@@ -17,9 +17,44 @@ namespace Services.PersonService
         {
             _dbContext = dbContext;
         }
-        public Task<UserPersonDTO> GetPersonAsync(Guid id)
+
+        public async Task<UserPersonDTO> GetPersonAsync(Guid id)
         {
-            throw new NotImplementedException();
+            UserPersonDTO userPerson = new UserPersonDTO();
+            try
+            {
+                Person person = await _dbContext.People.Where(p => p.Id == id).SingleOrDefaultAsync();
+
+                if (person != null)
+                {
+                    User user = await _dbContext.Users.Where(p => p.Id == person.UserID).SingleOrDefaultAsync();
+                    person.User = user;
+
+                    userPerson = new UserPersonDTO()
+                    {
+                        Id = person.Id,
+                        Name = person.Name,
+                        LastName = person.LastName,
+                        Country = person.Country,
+                        Gender = person.Gender,
+                        UserId = user.Id,
+                        Email = user.Email,
+
+                    };
+                }
+                else
+                {
+                    userPerson = null;
+                }
+
+            }
+            catch 
+            {
+
+                userPerson = null;
+            }
+            return userPerson; 
+
         }
 
         public async Task<UserPersonDTO> InsertPersonAsync(Person userPerson)
@@ -43,8 +78,14 @@ namespace Services.PersonService
                                      on person.UserID equals user.Id
                                      select new UserPersonDTO()
                                      {
+                                         Id =  person.Id,
                                          Name = person.Name,
-                                         LastName = person.Name
+                                         LastName = person.LastName,
+                                         Country = person.Country,
+                                         Gender = person.Gender,
+                                         UserId = user.Id,
+                                         Email = user.Email,
+
                                      }).FirstOrDefault();
 
                     infoUser = newPerson;
@@ -55,7 +96,7 @@ namespace Services.PersonService
                 }
                
             }
-            catch (Exception)
+            catch 
             {
                 return infoUser = null;
             }
@@ -63,9 +104,43 @@ namespace Services.PersonService
                 return infoUser;
         }
 
-        public Task<PersonDTO> UpdatePersonAsync(Person id)
+        public async Task<PersonDTO> UpdatePersonAsync(Guid id, Person person)
         {
-            throw new NotImplementedException();
+            PersonDTO personUpdate = new PersonDTO();
+            try
+            {
+                Person personForUpdate = await _dbContext.People.Where(p => p.Id == id).SingleOrDefaultAsync();
+
+                if (personForUpdate != null)
+                {
+                    personForUpdate.Name = person.Name;
+                    personForUpdate.LastName = person.LastName;
+                    personForUpdate.Country = person.Country;
+                    personForUpdate.Gender = person.Gender;
+
+                    var save = await _dbContext.SaveChangesAsync();
+
+                    if (save == 1)
+                    {
+                        personUpdate.Name = person.Name;
+                        personUpdate.LastName = person.LastName;
+                        personUpdate.Country = person.Country;
+                        personUpdate.Gender = person.Gender;
+                    }
+                  
+                }
+                else
+                {
+                    personUpdate = null;
+                }
+            }
+            catch 
+            {
+
+                personUpdate = null;
+            }
+
+            return personUpdate;
         }
     }
 }

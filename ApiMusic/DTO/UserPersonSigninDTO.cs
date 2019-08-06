@@ -9,7 +9,6 @@ namespace DTO
 {
     public class UserPersonSigninDTO
     {
-        public Guid Id { get; set; }
 
         [Required]
         [MaxLength(25)]
