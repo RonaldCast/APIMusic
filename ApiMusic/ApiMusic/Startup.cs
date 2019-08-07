@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using DTO;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -13,11 +15,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using NSwag;
 using NSwag.Generation.Processors.Security;
 using Persistent;
 using Services.AlbumService;
 using Services.ArtistService;
+using Services.AuthServices;
 using Services.MusicService;
 using Services.PersonService;
 using Services.PlayListService;
@@ -37,8 +41,24 @@ namespace ApiMusic
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //configuration AutoMapper
-   
+            //configuration Token
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+           .AddJwtBearer(options =>
+           {
+               options.TokenValidationParameters = new TokenValidationParameters()
+               {
+                   ValidateIssuer = true,
+                   ValidateAudience = true,
+                   ValidateLifetime = true,
+                   ValidateIssuerSigningKey = true,
+                   ValidIssuer = Configuration["JWT:Issuer"],
+                   ValidAudience = Configuration["JWT:Audience"],
+                   IssuerSigningKey = new SymmetricSecurityKey(
+                       Encoding.UTF8.GetBytes(Configuration["JWT:ClaveSecreta"]))
+               };
+           });
+
 
             //Configuration Service 
             services.AddScoped<IPersonService, PersonService>();
@@ -46,6 +66,7 @@ namespace ApiMusic
             services.AddScoped<IMusicService, MusicService>();
             services.AddScoped<IAlbumService, AlbumService>();
             services.AddScoped<IPlayListService, PlayListService>();
+            services.AddScoped<IAuthService, AuthService>();
 
             //Configuration database 
             var connectionString = Configuration.GetConnectionString("dev");
@@ -71,6 +92,7 @@ namespace ApiMusic
                     }
 
                 );
+
                 document.OperationProcessors.Add(
                     new AspNetCoreOperationSecurityScopeProcessor("JWT"));
             });
@@ -89,6 +111,7 @@ namespace ApiMusic
             }
 
             app.UseHttpsRedirection();
+            app.UseAuthentication(); //auth
 
             //Add swagger
             app.UseOpenApi();
