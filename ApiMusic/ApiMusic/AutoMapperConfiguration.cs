@@ -20,6 +20,9 @@ namespace DTO
 
             CreateMap<Artist, ArtistDTO>()
                 .ReverseMap();
+
+            CreateMap<Album, AlbumDTO>()
+                .ReverseMap();
         }
     }
 }

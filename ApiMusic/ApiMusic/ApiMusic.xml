@@ -4,6 +4,34 @@
         <name>ApiMusic</name>
     </assembly>
     <members>
+        <member name="M:ApiMusic.Controllers.AlbumController.Get">
+            <summary>
+            Get all albums
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ApiMusic.Controllers.AlbumController.Get(System.Guid)">
+            <summary>
+            Get album for id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ApiMusic.Controllers.AlbumController.Post(DTO.AlbumDTO)">
+            <summary>
+            Create album
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ApiMusic.Controllers.AlbumController.Put(System.Guid,DTO.AlbumDTO)">
+            <summary>
+            Update album
+            </summary>
+            <param name="id"></param>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
         <member name="M:ApiMusic.Controllers.ArtistController.Get">
             <summary>
             Return list of artist
