@@ -1,31 +1,167 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DTO;
+using Microsoft.EntityFrameworkCore;
+using Models;
+using Persistent;
 
 namespace Services.MusicService
 {
     public class MusicService : IMusicService
     {
-        public Task<bool> DeleteMusic(Guid id)
+
+        private readonly ApplicationDbContext _dbContext;
+        public MusicService(ApplicationDbContext dbContext)
         {
-            throw new NotImplementedException();
+            _dbContext = dbContext;
+        }
+        public async Task<bool> DeleteMusicAsync(Guid id)
+        {
+            bool response = false;
+            try
+            {
+                Music music = await _dbContext.Musics.Where(p => p.Id == id).SingleOrDefaultAsync();
+
+                if (music != null)
+                {
+                     _dbContext.Remove(music);
+                    var save = await _dbContext.SaveChangesAsync();
+
+                    if (save == 1)
+                    {
+                        response = true;
+                    }
+
+                }
+
+            }   
+            catch 
+            {
+
+                response = false;
+            }
+
+            return response; 
+
+
         }
 
-        public Task<MusicDTO> InsertMusic(MusicDTO music)
+        public async Task<Music> GetMusicAsync(Guid id)
         {
-            throw new NotImplementedException();
+            Music response = new Music();
+            try
+            {
+                response = await _dbContext.Musics
+                    .Where(p => p.Id == id)
+                    .SingleOrDefaultAsync();
+
+            }
+            catch 
+            {
+                response = null;
+                
+            }
+
+            return response; 
         }
 
-        public Task<MusicArtistDTO> InsertMusicArtist(MusicArtistDTO musicArtist)
+        public async Task<IEnumerable<Music>> GetMusicsAsync()
         {
-            throw new NotImplementedException();
+            List<Music> musics = new List<Music>();
+            try
+            {
+                musics = await _dbContext.Musics.ToListAsync();
+            }
+            catch 
+            {
+
+                musics = null;
+            }
+            return musics;
+
         }
 
-        public Task<MusicDTO> UpdateMusic(MusicDTO music)
+        public async Task<Music> InsertMusicAsync(Music music)
         {
-            throw new NotImplementedException();
+            Music response = new Music();
+            try
+            {
+                music.DatePublic = DateTimeOffset.Now;
+
+                List<Artist> artists = await _dbContext.Artists.ToListAsync();
+
+                List<Artist> artistMusic = 
+                    (from artist in artists
+                     join artistM in music.MusicArtists
+                     on artist.Id equals artistM.ArtistId
+                     select new Artist {
+                                       Id  = artist.Id,
+                                       NameArtist = artist.NameArtist,
+                                       Country = artist.Country,
+                                       Gender = artist.Gender
+                     }).ToList();
+
+                if(artistMusic.Count != 0)
+                {
+                    music.MusicArtists = new List<MusicArtist>();
+                   foreach (Artist art in artistMusic)
+                    {
+                        MusicArtist musicArtist = new MusicArtist();
+                        musicArtist.Artist = art;
+                        musicArtist.Music = music;
+                        music.MusicArtists.Add(musicArtist);
+                    }
+
+                    await _dbContext.Musics.AddAsync(music);
+
+                    var save = await _dbContext.SaveChangesAsync();
+                    if (save != 1)
+                    {
+                        response = music;
+                    }
+                }
+                                           
+            }
+            catch
+            {
+
+                response = null;
+            }
+
+            return response;
+        }
+
+        public async Task<Music> UpdateMusicAsync(Guid id, Music music)
+        {
+            Music response = new Music();
+            try
+            {
+
+                List<Artist> artists = await _dbContext.Artists.ToListAsync();
+                response = await _dbContext.Musics.Where(p => p.Id == id).FirstOrDefaultAsync();
+                if (response != null)
+                {
+                    response.Duration = music.Duration;
+                    response.Title = music.Title;
+
+                   var save = await _dbContext.SaveChangesAsync();
+                   if (save != 1)
+                   {
+                      response = music;
+                   }
+                    
+                }
+            }
+            catch
+            {
+
+                response = null;
+            }
+
+            return response;
         }
     }
 }

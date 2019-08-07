@@ -32,6 +32,13 @@
             <param name="model"></param>
             <returns></returns>
         </member>
+        <member name="M:ApiMusic.Controllers.AlbumController.Delete(System.Guid)">
+            <summary>
+            Delete music for id 
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="M:ApiMusic.Controllers.ArtistController.Get">
             <summary>
             Return list of artist
@@ -58,6 +65,41 @@
             </summary>
             <param name="id"></param>
             <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ApiMusic.Controllers.MusicController.Get">
+            <summary>
+            Get all music
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ApiMusic.Controllers.MusicController.Get(System.Guid)">
+             <summary>
+            
+             </summary>
+             <param name="id"></param>
+             <returns></returns>
+        </member>
+        <member name="M:ApiMusic.Controllers.MusicController.Post(DTO.MusicDTO)">
+            <summary>
+            Create Music
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ApiMusic.Controllers.MusicController.Put(System.Guid,DTO.MusicBasicInfoDTO)">
+            <summary>
+            Update music 
+            </summary>
+            <param name="id"></param>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ApiMusic.Controllers.MusicController.Delete(System.Guid)">
+            <summary>
+            Delete Music for id
+            </summary>
+            <param name="id"></param>
             <returns></returns>
         </member>
         <member name="M:ApiMusic.Controllers.PersonController.Get(System.Guid)">

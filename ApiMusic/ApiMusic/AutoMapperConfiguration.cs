@@ -23,6 +23,12 @@ namespace DTO
 
             CreateMap<Album, AlbumDTO>()
                 .ReverseMap();
+
+            CreateMap<Music, MusicDTO>()
+                .ReverseMap();
+
+            CreateMap<Music, MusicBasicInfoDTO>()
+               .ReverseMap();
         }
     }
 }

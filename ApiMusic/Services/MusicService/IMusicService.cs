@@ -1,4 +1,5 @@
 ﻿using DTO;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,10 +9,10 @@ namespace Services.MusicService
 {
     public interface IMusicService
     {
-        Task<MusicDTO> InsertMusic(MusicDTO music);
-        Task<bool> DeleteMusic(Guid id);
-        Task<MusicDTO> UpdateMusic(MusicDTO music);
-        Task<MusicArtistDTO> InsertMusicArtist(MusicArtistDTO musicArtist);
-        
+        Task<Music> InsertMusicAsync(Music music);
+        Task<bool> DeleteMusicAsync(Guid id);
+        Task<Music> UpdateMusicAsync(Guid id, Music music);
+        Task<Music> GetMusicAsync(Guid id);
+        Task<IEnumerable<Music>> GetMusicsAsync();
     }
 }
