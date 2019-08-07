@@ -13,11 +13,6 @@ using Services.PersonService;
 namespace ApiMusic.Controllers
 {
 
-    [SwaggerTag("Person endPoint",
-        AddToDocument = true,
-        Description = "This endpoint has a verity of the data about person",
-        DocumentationDescription = "It has repository in Github",
-        DocumentationUrl = "https://github.com/RonaldCast/APIMusic/network")]
     [Route("api/[controller]")]
     [ApiController]
     public class PersonController : ControllerBase

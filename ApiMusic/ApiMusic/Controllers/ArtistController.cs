@@ -12,11 +12,7 @@ using Services.ArtistService;
 
 namespace ApiMusic.Controllers
 {
-    [SwaggerTag("Artist endPoint",
-     AddToDocument = true,
-     Description = "This endpoint has a verity of the data about artist",
-     DocumentationDescription = "It has repository in Github",
-     DocumentationUrl = "https://github.com/RonaldCast/APIMusic/network")]
+
     [Route("api/[controller]")]
     [ApiController]
     public class ArtistController : ControllerBase
@@ -27,6 +23,7 @@ namespace ApiMusic.Controllers
         public ArtistController(IMapper mapper, IArtistService artistService)
         {
             _artistService = artistService;
+            _mapper = mapper;
         }
 
 
@@ -35,17 +32,18 @@ namespace ApiMusic.Controllers
         /// Return list of artist
         /// </summary>
         /// <returns></returns>
-        //GET api/artist/
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<IEnumerable<Artist>>> GetAll()
+        //GET api/artist/
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Artist>>> Get()
         {
             IEnumerable<Artist> response = await _artistService.GetAllArtistAsync();
 
             return Ok(response); 
         }
 
-        //GET api/artist/:id
+
         /// <summary>
         ///  Get artist
         /// </summary>
@@ -53,6 +51,8 @@ namespace ApiMusic.Controllers
         /// <returns></returns>
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        //GET api/artist/:id
+        [HttpGet("{id}")]
         public async Task<ActionResult<Artist>> Get([FromRoute] Guid id)
         {
             Artist artist = await _artistService.GetArtistAsync(id);
@@ -66,7 +66,7 @@ namespace ApiMusic.Controllers
             }
         }
 
-        //POST api/artist/
+
         /// <summary>
         /// Create Artist 
         /// </summary>
@@ -75,6 +75,8 @@ namespace ApiMusic.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        //POST api/artist/
+        [HttpPost]
         public async Task<ActionResult<ArtistDTO>> Post(ArtistDTO artist)
         {
             Artist newArtist = _mapper.Map<Artist>(artist);
@@ -90,7 +92,7 @@ namespace ApiMusic.Controllers
             }
         }
 
-        //PUT api/artist/:id
+
         /// <summary>
         /// Update artist information
         /// </summary>
@@ -98,6 +100,8 @@ namespace ApiMusic.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [ProducesResponseType(StatusCodes.Status201Created)]
+        //PUT api/artist/:id
+        [HttpPut("{id}")]
         public async Task<ActionResult<Artist>> Put([FromRoute] Guid id, [FromBody] ArtistDTO model)
         {
             Artist artist = _mapper.Map<Artist>(model);

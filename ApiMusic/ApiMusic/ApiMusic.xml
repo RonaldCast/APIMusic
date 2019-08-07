@@ -4,7 +4,7 @@
         <name>ApiMusic</name>
     </assembly>
     <members>
-        <member name="M:ApiMusic.Controllers.ArtistController.GetAll">
+        <member name="M:ApiMusic.Controllers.ArtistController.Get">
             <summary>
             Return list of artist
             </summary>
