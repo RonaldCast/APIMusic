@@ -17,6 +17,9 @@ namespace DTO
 
             CreateMap<Person, PersonDTO>()
                 .ReverseMap();
+
+            CreateMap<Artist, ArtistDTO>()
+                .ReverseMap();
         }
     }
 }

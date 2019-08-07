@@ -16,6 +16,7 @@ using Microsoft.Extensions.Options;
 using NSwag;
 using NSwag.Generation.Processors.Security;
 using Persistent;
+using Services.ArtistService;
 using Services.PersonService;
 
 namespace ApiMusic
@@ -38,7 +39,7 @@ namespace ApiMusic
 
             //Configuration Service 
             services.AddScoped<IPersonService, PersonService>();
-            
+            services.AddScoped<IArtistService, ArtistService>();
 
             //Configuration database 
             var connectionString = Configuration.GetConnectionString("dev");

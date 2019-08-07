@@ -4,6 +4,34 @@
         <name>ApiMusic</name>
     </assembly>
     <members>
+        <member name="M:ApiMusic.Controllers.ArtistController.GetAll">
+            <summary>
+            Return list of artist
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ApiMusic.Controllers.ArtistController.Get(System.Guid)">
+            <summary>
+             Get artist
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ApiMusic.Controllers.ArtistController.Post(DTO.ArtistDTO)">
+            <summary>
+            Create Artist 
+            </summary>
+            <param name="artist"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ApiMusic.Controllers.ArtistController.Put(System.Guid,DTO.ArtistDTO)">
+            <summary>
+            Update artist information
+            </summary>
+            <param name="id"></param>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
         <member name="M:ApiMusic.Controllers.PersonController.Get(System.Guid)">
             <summary>
             Endpoint get person data 
