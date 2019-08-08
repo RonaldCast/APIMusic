@@ -29,6 +29,9 @@ namespace DTO
 
             CreateMap<Music, MusicBasicInfoDTO>()
                .ReverseMap();
+
+            CreateMap<PlayList, PlayListDTO>()
+                .ReverseMap();
         }
     }
 }

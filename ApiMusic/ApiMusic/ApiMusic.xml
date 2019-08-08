@@ -127,5 +127,39 @@
             <param name="person"></param>
             <returns></returns>
         </member>
+        <member name="M:ApiMusic.Controllers.PlayListController.Get">
+            <summary>
+            Get all playlist
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ApiMusic.Controllers.PlayListController.Get(System.Guid)">
+            <summary>
+            Get Playlist for  id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ApiMusic.Controllers.PlayListController.Post(DTO.PlayListDTO)">
+            <summary>
+            Create Play list
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ApiMusic.Controllers.PlayListController.Delete(System.Guid)">
+            <summary>
+            Delete playlist
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ApiMusic.Controllers.PlayListController.Put(System.Guid,DTO.PlayListDTO)">
+            <summary>
+            Update Playlist 
+            </summary>
+            <param name="id"></param>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

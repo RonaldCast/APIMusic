@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using DTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Models;
@@ -35,6 +36,7 @@ namespace ApiMusic.Controllers
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [Authorize]
         public async Task<ActionResult<UserPersonDTO>> Get([FromRoute] Guid id)
         {
             UserPersonDTO userPerson = await _personService.GetPersonAsync(id);
@@ -56,6 +58,7 @@ namespace ApiMusic.Controllers
         /// <response code="500">Unauthorized. Internal server error</response>
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [AllowAnonymous]
         [HttpPost]
         public  async Task<ActionResult<UserPersonDTO>> Post([FromBody] UserPersonSigninDTO person)
         {
@@ -78,6 +81,7 @@ namespace ApiMusic.Controllers
         /// <param name="person"></param>
         /// <returns></returns>
         // PUT: person/:id
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<ActionResult<PersonDTO>> Put([FromRoute] Guid id,[FromBody] PersonDTO person)
         {

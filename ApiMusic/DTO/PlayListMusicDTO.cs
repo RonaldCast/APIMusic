@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Services.PlayListService
 {
     public class PlayListMusicDTO
     {
-        public Guid MusicId { get; set; }
-        public Guid ArtistId { get; set; }
+        public Guid Id { get; set; }
+        public List<Guid> Music { get; set; }
+        
     }
 }

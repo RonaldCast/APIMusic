@@ -1,4 +1,5 @@
 ﻿using DTO;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,9 +9,11 @@ namespace Services.PlayListService
 {
     public interface IPlayListService
     {
-        Task<PlayListDTO> InsertPlayList(PlayListDTO playList);
-        Task<PlayListDTO> UpdatePlayList(PlayListDTO playList);
-        Task<bool> DeletePlayList(Guid id);
-        Task<PlayListMusicDTO> InsertPlayListMusic(PlayListMusicDTO playListMusic);
+        Task<PlayList> InsertPlayListAsync(PlayList playList);
+        Task<PlayList> UpdatePlayListAsync(Guid id, PlayList playList);
+        Task<bool> DeletePlayListAsync(Guid id);
+        Task<PlayList> AddMusicAsync(PlayListMusicDTO playListMusic);
+        Task<IEnumerable<PlayList>> GetAllPlayListAsync(Guid idUser);
+        Task<PlayListInfoDTO> GetPlayList(Guid id);
     }
 }

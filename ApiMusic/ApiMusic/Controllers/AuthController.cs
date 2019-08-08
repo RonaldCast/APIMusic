@@ -59,6 +59,8 @@ namespace ApiMusic.Controllers
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(JwtRegisteredClaimNames.NameId, usuarioInfo.Id.ToString()),
                 new Claim(JwtRegisteredClaimNames.Email, usuarioInfo.Email),
+                new Claim("id", usuarioInfo.Id.ToString()),
+                new Claim("emailAddress", usuarioInfo.Email)
             };
 
             // CREAMOS EL PAYLOAD //
