@@ -14,10 +14,6 @@ namespace Services.PersonService
     {
         private readonly ApplicationDbContext _dbContext;
 
-        public PersonService()
-        {
-        }
-
         public PersonService(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
