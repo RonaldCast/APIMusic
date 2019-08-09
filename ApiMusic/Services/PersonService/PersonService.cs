@@ -13,6 +13,11 @@ namespace Services.PersonService
     public class PersonService : IPersonService
     {
         private readonly ApplicationDbContext _dbContext;
+
+        public PersonService()
+        {
+        }
+
         public PersonService(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;

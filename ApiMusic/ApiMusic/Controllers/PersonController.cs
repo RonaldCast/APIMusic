@@ -36,7 +36,6 @@ namespace ApiMusic.Controllers
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [Authorize]
         public async Task<ActionResult<UserPersonDTO>> Get([FromRoute] Guid id)
         {
             UserPersonDTO userPerson = await _personService.GetPersonAsync(id);
