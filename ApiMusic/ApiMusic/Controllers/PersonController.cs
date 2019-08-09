@@ -28,17 +28,20 @@ namespace ApiMusic.Controllers
         /// <summary>
         /// Endpoint get person data 
         /// </summary>
-        /// <param name="id"></param>
         /// <response code="404"> the user not found</response>
         /// <response code="200">User found</response>
         /// <returns></returns>
-        // Get person/:id
-        [HttpGet("{id}")]
+        // Get person/
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<UserPersonDTO>> Get([FromRoute] Guid id)
+        [HttpGet]
+        public async Task<ActionResult<UserPersonDTO>> Get()
         {
-            UserPersonDTO userPerson = await _personService.GetPersonAsync(id);
+            var user = User.Claims.ToList();
+            Guid UserId = Guid.Parse(user.FirstOrDefault(x => x.Type == "id").Value);
+
+            UserPersonDTO userPerson = await _personService.GetPersonAsync(UserId);
             if (userPerson != null)
             {
                 return Ok(userPerson);
@@ -76,16 +79,18 @@ namespace ApiMusic.Controllers
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="id"></param>
         /// <param name="person"></param>
         /// <returns></returns>
-        // PUT: person/:id
+        // PUT: person/
         [Authorize]
-        [HttpPut("{id}")]
-        public async Task<ActionResult<PersonDTO>> Put([FromRoute] Guid id,[FromBody] PersonDTO person)
+        [HttpPut]
+        public async Task<ActionResult<PersonDTO>> Put([FromBody] PersonDTO person)
         {
+            var user = User.Claims.ToList();
+            Guid UserId = Guid.Parse(user.FirstOrDefault(x => x.Type == "id").Value);
             Person model = _mapper.Map<Person>(person);
-            PersonDTO personUpdate = await  _personService.UpdatePersonAsync(id, model);
+
+            PersonDTO personUpdate = await  _personService.UpdatePersonAsync(UserId, model);
             if (personUpdate == null)
             {
                 return NotFound();

@@ -24,7 +24,7 @@ namespace Services.PersonService
             UserPersonDTO userPerson = new UserPersonDTO();
             try
             {
-                Person person = await _dbContext.People.Where(p => p.Id == id).SingleOrDefaultAsync();
+                Person person = await _dbContext.People.Where(p => p.UserID == id).SingleOrDefaultAsync();
 
                 if (person != null)
                 {
@@ -110,7 +110,7 @@ namespace Services.PersonService
             PersonDTO personUpdate = new PersonDTO();
             try
             {
-                Person personForUpdate = await _dbContext.People.Where(p => p.Id == id).SingleOrDefaultAsync();
+                Person personForUpdate = await _dbContext.People.Where(p => p.UserID == id).SingleOrDefaultAsync();
 
                 if (personForUpdate != null)
                 {

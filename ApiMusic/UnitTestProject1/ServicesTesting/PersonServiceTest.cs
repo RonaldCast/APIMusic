@@ -7,6 +7,7 @@ using System;
 using Microsoft.AspNetCore.Mvc;
 using DTO;
 using System.Threading.Tasks;
+using Services.AuthServices;
 
 namespace UnitTest
 {
@@ -45,12 +46,15 @@ namespace UnitTest
         {
             //ARRAGEN
             var user = PersonStub.user;
+            var loginUser = AuthStub.user;
             using (var context = sqlLifeFake.GetDbContext())
             {
                 //ACT
                 var personService = new PersonService(context);
+                var authService = new AuthService(context);
                 var person = personService.InsertPersonAsync(user);
-                var result = personService.GetPersonAsync(person.Result.Id);
+                var authUser = authService.LoginUserAsync(loginUser);
+                var result = personService.GetPersonAsync(authUser.Result.Id);
 
                 //ASSERT
                 result.Should().NotBeNull();
@@ -64,14 +68,19 @@ namespace UnitTest
             //ARRAGEN
             var user = PersonStub.user;
             var updateUser = PersonStub.UpdateUser;
+            var userLogin = AuthStub.user;
 
             using(var context = sqlLifeFake.GetDbContext())
             {
                 //ACT
                 var personService = new PersonService(context);
+                var authService = new AuthService(context);
+
                 var oldInfoPerson = personService.InsertPersonAsync(user);
+                var loging = authService.LoginUserAsync(userLogin);
                 var result = personService
-                    .UpdatePersonAsync(oldInfoPerson.Result.Id, updateUser);
+                    .UpdatePersonAsync(loging.Result.Id, updateUser);
+
 
                 //ASSERT
                 result.Result.Name.Should().Equals("Samuel");

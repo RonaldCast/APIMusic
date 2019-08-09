@@ -102,11 +102,10 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:ApiMusic.Controllers.PersonController.Get(System.Guid)">
+        <member name="M:ApiMusic.Controllers.PersonController.Get">
             <summary>
             Endpoint get person data 
             </summary>
-            <param name="id"></param>
             <response code="404"> the user not found</response>
             <response code="200">User found</response>
             <returns></returns>
@@ -119,11 +118,10 @@
             <reponse code="200"></reponse>
             <response code="500">Unauthorized. Internal server error</response>
         </member>
-        <member name="M:ApiMusic.Controllers.PersonController.Put(System.Guid,DTO.PersonDTO)">
+        <member name="M:ApiMusic.Controllers.PersonController.Put(DTO.PersonDTO)">
             <summary>
             
             </summary>
-            <param name="id"></param>
             <param name="person"></param>
             <returns></returns>
         </member>
