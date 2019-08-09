@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using DTO;
 using System.Threading.Tasks;
 
-namespace UnitTestProject1
+namespace UnitTest
 {
     [TestClass]
     public class PersonServiceTest
