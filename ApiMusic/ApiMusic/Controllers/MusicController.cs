@@ -70,7 +70,7 @@ namespace ApiMusic.Controllers
                 return NotFound();
             }
 
-            return CreatedAtAction(nameof(Get), response.Id, response);
+            return CreatedAtAction(nameof(Get), new { id = response.Id }, response);
         }
 
 

@@ -123,6 +123,10 @@ namespace Services.MusicService
                         response = music;
                     }
                 }
+                else
+                {
+                    response = null;
+                }
                                            
             }
             catch
