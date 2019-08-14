@@ -1,0 +1,163 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ApiMusic</name>
+    </assembly>
+    <members>
+        <member name="M:ApiMusic.Controllers.AlbumController.Get">
+            <summary>
+            Get all albums
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ApiMusic.Controllers.AlbumController.Get(System.Guid)">
+            <summary>
+            Get album for id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ApiMusic.Controllers.AlbumController.Post(DTO.AlbumDTO)">
+            <summary>
+            Create album
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ApiMusic.Controllers.AlbumController.Put(System.Guid,DTO.AlbumDTO)">
+            <summary>
+            Update album
+            </summary>
+            <param name="id"></param>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ApiMusic.Controllers.AlbumController.Delete(System.Guid)">
+            <summary>
+            Delete music for id 
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ApiMusic.Controllers.ArtistController.Get">
+            <summary>
+            Return list of artist
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ApiMusic.Controllers.ArtistController.Get(System.Guid)">
+            <summary>
+             Get artist
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ApiMusic.Controllers.ArtistController.Post(DTO.ArtistDTO)">
+            <summary>
+            Create Artist 
+            </summary>
+            <param name="artist"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ApiMusic.Controllers.ArtistController.Put(System.Guid,DTO.ArtistDTO)">
+            <summary>
+            Update artist information
+            </summary>
+            <param name="id"></param>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ApiMusic.Controllers.MusicController.Get">
+            <summary>
+            Get all music
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ApiMusic.Controllers.MusicController.Get(System.Guid)">
+             <summary>
+            
+             </summary>
+             <param name="id"></param>
+             <returns></returns>
+        </member>
+        <member name="M:ApiMusic.Controllers.MusicController.Post(DTO.MusicDTO)">
+            <summary>
+            Create Music
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ApiMusic.Controllers.MusicController.Put(System.Guid,DTO.MusicBasicInfoDTO)">
+            <summary>
+            Update music 
+            </summary>
+            <param name="id"></param>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ApiMusic.Controllers.MusicController.Delete(System.Guid)">
+            <summary>
+            Delete Music for id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ApiMusic.Controllers.PersonController.Get">
+            <summary>
+            Endpoint get person data 
+            </summary>
+            <response code="404"> the user not found</response>
+            <response code="200">User found</response>
+            <returns></returns>
+        </member>
+        <member name="M:ApiMusic.Controllers.PersonController.Post(DTO.UserPersonSigninDTO)">
+            <summary>
+            Endpoint Create person en account user
+            </summary>
+            <param name="person"></param>
+            <reponse code="200"></reponse>
+            <response code="500">Unauthorized. Internal server error</response>
+        </member>
+        <member name="M:ApiMusic.Controllers.PersonController.Put(DTO.PersonDTO)">
+            <summary>
+            
+            </summary>
+            <param name="person"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ApiMusic.Controllers.PlayListController.Get">
+            <summary>
+            Get all playlist
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ApiMusic.Controllers.PlayListController.Get(System.Guid)">
+            <summary>
+            Get Playlist for  id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ApiMusic.Controllers.PlayListController.Post(DTO.PlayListDTO)">
+            <summary>
+            Create Play list
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ApiMusic.Controllers.PlayListController.Delete(System.Guid)">
+            <summary>
+            Delete playlist
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ApiMusic.Controllers.PlayListController.Put(System.Guid,DTO.PlayListDTO)">
+            <summary>
+            Update Playlist 
+            </summary>
+            <param name="id"></param>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
